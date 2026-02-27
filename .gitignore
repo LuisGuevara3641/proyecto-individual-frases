@@ -1,0 +1,9 @@
+node_modules/
+server/data/
+*.log
+client/dist/
+
+# No subir documentación interna ni scripts .bat
+*.md
+correr.bat
+instalar-y-correr.bat
