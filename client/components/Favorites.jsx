@@ -1,9 +1,15 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function Favorites({ favoritos, cargando, onQuitar }) {
-  const copiar = (content, author) => {
+  const [copiadoId, setCopiadoId] = useState(null);
+
+  const copiar = (id, content, author) => {
     const texto = `"${content}" — ${author}`;
-    navigator.clipboard.writeText(texto);
+    navigator.clipboard.writeText(texto).then(() => {
+      setCopiadoId(id);
+      setTimeout(() => setCopiadoId(null), 2000);
+    });
   };
 
   if (cargando) {
@@ -31,8 +37,8 @@ export default function Favorites({ favoritos, cargando, onQuitar }) {
                 <p className="favorite-note"><strong>Mi nota:</strong> {f.nota}</p>
               )}
               <div className="favorite-actions">
-                <button type="button" onClick={() => copiar(f.content, f.author)} className="btn btn-sm">
-                  Copiar
+                <button type="button" onClick={() => copiar(f.id, f.content, f.author)} className="btn btn-sm">
+                  {copiadoId === f.id ? '¡Copiado!' : 'Copiar'}
                 </button>
                 <button type="button" onClick={() => onQuitar(f.id)} className="btn btn-sm btn-danger">
                   Quitar
