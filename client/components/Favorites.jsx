@@ -20,7 +20,7 @@ export default function Favorites({ favoritos, cargando, onQuitar }) {
       <h2 className="card-title">Mis favoritos</h2>
 
       {favoritos.length === 0 ? (
-        <p className="muted empty-msg">Aún no tienes favoritos. Agrega frases desde arriba.</p>
+        <p className="muted empty-msg">Aún no tienes favoritos.</p>
       ) : (
         <ul className="favorites-list">
           {favoritos.map((f) => (
